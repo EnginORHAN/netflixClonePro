@@ -47,12 +47,12 @@
 </style>
 {% endblock header %}
     
-{% block body %}
+{% block nonheader %}
 <div class="hero-image">
     <!-- navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="/" class="navbar-brand"><img src="{% static '{% static 'img/netflix_logo.png' %}' %}" alt=""></a>
+            <a href="/" class="navbar-brand"><img src="{% static 'img/netflix_logo.png'%}" alt=""></a>
         </div>
     </nav>
 
@@ -92,7 +92,7 @@
     </div>
 
 </div>
-{% endblock body %}
+{% endblock nonheader %}
     
 
     
