@@ -111,6 +111,11 @@ STATIC_ROOT = BASE_DIR / "static"
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
+#messages
+from django.contrib.messages import constants as message_constants
+
+MESSAGE_TAGS = {message_constants.ERROR: "danger"}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
