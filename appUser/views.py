@@ -10,7 +10,7 @@ def hesapPage(request):
 
 def profilePage(request):
     
-    profile_list = Profile.objects.filter(user=request.user)
+    profile_list = Profile.objects.filter(user=request.user, isview=True)
     
     if request.method == "POST":
         if len(profile_list) <4:
@@ -29,7 +29,8 @@ def profilePage(request):
 
 def profileDelete(request,pid):
     profile = Profile.objects.get(id=pid)
-    profile.delete()  
+    profile.isview = False
+    profile.save() 
     return redirect("profilePage")
 
 
