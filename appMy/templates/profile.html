@@ -43,16 +43,18 @@
 
         
         {% for i in profile_list %}
+        {% if i.image %}
             <div class="col-3 mt-5 mb-5">
                 <div class=" text-decoration-none text-secondary">
                     <div class="card bg-transparent position-relative">
                         <div class="upgrade d-none">
                             <i class="text-black btn btn-light bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#profiledelete{{ i.id }}"></i>
-                            <a href="{% url 'profileDelete' i.id %}"><i class="text-black btn btn-light bi bi-x-square"></i></a>
+                            <a href=""><i class="text-black btn btn-light bi bi-x-square"></i></a>
                         </div>
-                            <!-- <a href="{% url 'browsePage' i.id %}"><img src="{{ i.image.url }}" class="card-img-top w-100" style="height: 186px; object-fit: cover;" alt=""></a> -->
-                            <a href="{% url 'profileBrowse' i.id %}"><img src="{{ i.image.url }}" class="card-img-top w-100" style="height: 186px; object-fit: cover;" alt=""></a>
-                        <div>
+                            
+                            <a href=""><img src="{{ i.image.url }}" class="card-img-top w-100" style="height: 186px; object-fit: cover;" alt=""></a>
+                            
+                            <div>
                             <h5 class="card-title text-center text-secondary">{{ i.title }}</h5>
                         </div>
                     </div>
@@ -81,8 +83,9 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}
-        
+            {% endif %}
+            {% endfor %}
+            
         
         {% if profile_list|length < 4 %}
             <!-- Profil Ekleme -->

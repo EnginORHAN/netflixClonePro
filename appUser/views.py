@@ -2,12 +2,29 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from appUser.models import *
+
 def hesapPage(request):
     context={}
     return render(request,"hesap.html",context)
 
 def profilePage(request):
-    context={}
+    
+    profile_list = Profile.objects.filter(user=request.user)
+    
+    if request.method == "POST":
+        if len(profile_list) <4:
+            title = request.POST.get("title")
+            image = request.FILES.get("image")
+            if title and image:
+                profile = Profile(title=title,image=image,user=request.user)
+                profile.save()
+                return redirect("profilePage")
+            else:
+                messages.warning(request,"boş bırakılan yerler var")
+    context={
+        "profile_list":profile_list,
+    }
     return render(request,"profile.html",context)
 
 def loginPage(request):
