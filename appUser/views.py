@@ -32,6 +32,7 @@ def loginPage(request):
     return render(request,"user/login.html",context)
 
 def registerPage(request):
+    context={}
     
     if request.method == "POST":
         fname=request.POST.get("fname")
@@ -73,5 +74,8 @@ def registerPage(request):
                 messages.error(request, "Şifreler aynı değil.")
         else:
             messages.warning(request, "Boş bırakılan yerleri doldurunuz")
-    context={}
+            context.update({"fname":fname,"lname":lname,"email":email,"username":username})
+
     return render(request,"user/register.html",context)
+
+    
