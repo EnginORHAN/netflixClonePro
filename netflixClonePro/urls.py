@@ -11,6 +11,9 @@ urlpatterns = [
     path("netflix", browseindexPage,name="browseindexPage"),
     path("hesap", hesapPage,name="hesapPage"),
     path("profile", profilePage,name="profilePage"),
+    path("profileDelete/<pid>", profileDelete,name="profileDelete"),
+    
+    
     path("login", loginPage,name="loginPage"),
     path("signup", registerPage,name="registerPage"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

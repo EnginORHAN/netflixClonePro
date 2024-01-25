@@ -27,6 +27,12 @@ def profilePage(request):
     }
     return render(request,"profile.html",context)
 
+def profileDelete(request,pid):
+    profile = Profile.objects.get(id=pid)
+    profile.delete()  
+    return redirect("profilePage")
+
+
 def loginPage(request):
     
     if request.method=="POST":

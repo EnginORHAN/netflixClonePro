@@ -49,7 +49,7 @@
                     <div class="card bg-transparent position-relative">
                         <div class="upgrade d-none">
                             <i class="text-black btn btn-light bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#profiledelete{{ i.id }}"></i>
-                            <a href=""><i class="text-black btn btn-light bi bi-x-square"></i></a>
+                            <a href="{% url 'profileDelete' i.id %}"><i class="text-black btn btn-light bi bi-x-square"></i></a>
                         </div>
                             
                             <a href=""><img src="{{ i.image.url }}" class="card-img-top w-100" style="height: 186px; object-fit: cover;" alt=""></a>
