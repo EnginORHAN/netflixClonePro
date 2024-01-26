@@ -47,6 +47,18 @@ def profilePage(request):
             profiledelete.save()
             return redirect("profilePage")
         
+        elif submit == "profileUpdate":
+            
+            profileid = request.POST.get("profileid") 
+            profile = Profile.objects.get(user = request.user, id=profileid)
+            if title:
+                profile.title = title 
+            if image:
+                profile.image = image 
+            profile.save()
+            return redirect("profilePage")
+            
+        
     context.update({
         "profile_list":profile_list,
     })

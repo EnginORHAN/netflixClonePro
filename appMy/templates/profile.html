@@ -82,20 +82,20 @@
                 <div class=" text-decoration-none text-secondary">
                     <div class="card bg-transparent position-relative">
                         <div class="upgrade d-none">
-                            <i class="text-black btn btn-light bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#profiledelete{{ i.id }}"></i>
+                            <i class="text-black btn btn-light bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#profileupdate{{ i.id }}"></i>
                             <a href="{% url 'profileDelete' i.id %}"><i class="text-black btn btn-light bi bi-x-square"></i></a>
                         </div>
                             
                             <a href=""><img src="{{ i.image.url }}" class="card-img-top w-100" style="height: 186px; object-fit: cover;" alt=""></a>
-                            
-                            <div>
+                                
+                        <div>
                             <h5 class="card-title text-center text-secondary">{{ i.title }}</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="profiledelete{{ i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Profile Düzenle -->
+            <div class="modal fade" id="profileupdate{{ i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -106,19 +106,19 @@
                             {% csrf_token %}
                             <div class="modal-body">
                                 <input type="hidden" name="profileid" value="{{ i.id }}">
-                                <input type="text" class="form-control my-2" name="title" value="{{ i.title }}" placeholder="Profil Adı" id="">
-                                <input type="file" class="form-control my-2" name="image" id="">
+                                <input type="text" class="form-control my-2" name="title" value="{{ i.title }}" placeholder="Profil Adı">
+                                <input type="file" class="form-control my-2" name="image">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                <button type="submit" value="profileDelete" name="submit" class="btn btn-primary">Güncelle</button>
+                                <button type="submit" value="profileUpdate" name="submit" class="btn btn-primary">Güncelle</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            {% endif %}
-            {% endfor %}
+        {% endif %}
+        {% endfor %}
             
         
         {% if profile_list|length < 4 %}
