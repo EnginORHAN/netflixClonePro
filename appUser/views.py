@@ -65,11 +65,21 @@ def profilePage(request):
     return render(request,"profile.html",context)
 
 def profileDelete(request,pid):
-    profile = Profile.objects.get(id=pid)
+    profile = Profile.objects.get(user=request.user,id=pid)
     profile.isview = False
     profile.save() 
     return redirect("profilePage")
 
+
+def profileLogin(request,pid):
+    
+    profile_list = Profile.objects.filter(user = request.user) # kullanıcının tüm profilleri
+    profile_list.update(islogin=False) #listedeki tüm isloginleri false yapar
+    
+    profile = Profile.objects.get(user = request.user, id=pid) #tıklanan profil
+    profile.islogin = True # giriş li olan profil
+    profile.save() # kaydet
+    return redirect("browseindexPage")
 
 def loginPage(request):
     

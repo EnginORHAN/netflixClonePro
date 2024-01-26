@@ -33,16 +33,16 @@
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown" style="margin-right: 100px;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        <a class="nav-link rounded-circle dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'img/smile-profil.png' %}" style="width: 40px; height: 40px; object-fit: cover;" alt="">
+                            <img src="{{ profile.image.url }}" style="width: 40px; height: 40px; object-fit: cover;" class="rounded-circle" alt="">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="">Profil Yönetimi</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="">Hesap</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hesapPage' %}">Hesap</a></li>
                             <li><a class="dropdown-item" href="#">Yardım Merkezi</a></li>
                             <li><a class="dropdown-item" href="">Netflix oturumunu kapat</a></li>
                         </ul>

@@ -6,8 +6,8 @@ from appUser.models import *
 class ProfileAdmin(admin.ModelAdmin):
     '''Admin View for Profile'''
 
-    list_display = ('user', "title","isview","id","isnew",) # görmek istediklerimiz
-    list_editable = ("isview",) #içeriye girmedne değiştirilebilmesini sağlar
+    list_display = ('user', "title","isview","id","isnew","islogin",) # görmek istediklerimiz
+    list_editable = ("isview","isnew","islogin",) #içeriye girmedne değiştirilebilmesini sağlar
     # list_filter = ('',) # filtreleme verir
     # inlines = [
     #     Inline,

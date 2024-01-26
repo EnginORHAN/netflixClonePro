@@ -12,6 +12,7 @@ urlpatterns = [
     path("hesap", hesapPage,name="hesapPage"),
     path("profile", profilePage,name="profilePage"),
     path("profileDelete/<pid>", profileDelete,name="profileDelete"),
+    path("profileLogin/<pid>", profileLogin,name="profileLogin"),
     
     
     path("login", loginPage,name="loginPage"),
