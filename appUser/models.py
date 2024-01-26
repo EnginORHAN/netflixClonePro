@@ -7,6 +7,7 @@ class Profile(models.Model):
     title = models.CharField(("Başlık"), max_length=50)
     image= models.ImageField(("Profil resmi"), upload_to="profile", max_length=250)
     isview = models.BooleanField(("Görüntüle"),default=True)
+    isnew = models.BooleanField(("Silinen yeni profilmi"), default = False) #yeni profil olup olmadığını anlıcaz
     
     def __str__(self) -> str:
         return self.title

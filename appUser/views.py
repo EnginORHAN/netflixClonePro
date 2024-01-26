@@ -9,22 +9,47 @@ def hesapPage(request):
     return render(request,"hesap.html",context)
 
 def profilePage(request):
-    
+    context={}
     profile_list = Profile.objects.filter(user=request.user, isview=True)
-    
+    profile_delete_list = Profile.objects.filter(user=request.user, isview=False)
     if request.method == "POST":
-        if len(profile_list) <4:
-            title = request.POST.get("title")
-            image = request.FILES.get("image")
-            if title and image:
-                profile = Profile(title=title,image=image,user=request.user)
-                profile.save()
-                return redirect("profilePage")
-            else:
-                messages.warning(request,"boş bırakılan yerler var")
-    context={
+        submit = request.POST.get("submit")
+        title = request.POST.get("title")
+        image = request.FILES.get("image")
+
+        if submit =="profileCreate":
+            if len(profile_list) <4:     
+                if title and image:
+                    if profile_delete_list.filter(title=title).exists(): #true yada fals döndürtür exists silinen profil olup olmadığını tespit et 
+                        context.update({"is_delete_title":True, "title":title, "image":image})
+                        profile = Profile(title=title,image=image,user=request.user,isview=False , isnew = True)
+                        profile.save()
+                    else:
+                        profile = Profile(title=title,image=image,user=request.user)
+                        profile.save()
+                        return redirect("profilePage")
+                else:
+                    messages.warning(request,"boş bırakılan yerler var")
+        elif submit == "newProfileCreate":
+            profiledelete = profile_delete_list.get(title = title, isnew=False) #aynı isme sahip eski profil
+            profiledelete.delete()
+            profile = Profile.objects.get(user = request.user, isnew=True) #yeni oluşturduğumuz profili getir
+            profile.isnew=False
+            profile.isview=True
+            profile.save()
+            return redirect("profilePage")
+        
+        elif submit == "oldProfileCreate":
+            profile = Profile.objects.get(title = title, isnew=True)
+            profile.delete()
+            profiledelete = profile_delete_list.get(title = title, isnew=False)
+            profiledelete.isview = True
+            profiledelete.save()
+            return redirect("profilePage")
+        
+    context.update({
         "profile_list":profile_list,
-    }
+    })
     return render(request,"profile.html",context)
 
 def profileDelete(request,pid):
