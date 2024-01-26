@@ -13,6 +13,7 @@ urlpatterns = [
     path("profile", profilePage,name="profilePage"),
     path("profileDelete/<pid>", profileDelete,name="profileDelete"),
     path("profileLogin/<pid>", profileLogin,name="profileLogin"),
+    path("logoutUser", logoutUser,name="logoutUser"),
     
     
     path("login", loginPage,name="loginPage"),

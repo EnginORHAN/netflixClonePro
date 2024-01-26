@@ -149,4 +149,6 @@ def registerPage(request):
 
     return render(request,"user/register.html",context)
 
-    
+def logoutUser(request):
+    logout(request)
+    return redirect("loginPage")
