@@ -5,7 +5,44 @@ from django.contrib import messages
 from appUser.models import *
 
 def hesapPage(request):
-    context={}
+    profile = Profile.objects.get(user = request.user, islogin = True)
+    
+    if request.method == "POST":
+        submit = request.POST.get("submit")
+        if submit == "emailSubmit":
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            if request.user.check_password(password): #true yada false döndürür
+                request.user.email = email
+                request.user.save()
+                return redirect("hesapPage")
+            else:
+                messages.error(request, "Şifre Yanlış email değiştirilemedi")
+        elif submit == "passwordSubmit":
+            password = request.POST.get("password")
+            password1 = request.POST.get("password1")
+            password2 = request.POST.get("password2")
+            if request.user.check_password(password):
+                if password1 == password2:
+                    request.user.set_password(password1)
+                    request.user.save()
+                    return redirect("loginPage")
+                else:
+                    messages.error(request, "Yeni şifreler birbiri ile uyuşmuyor")
+            else:
+                messages.error(request, " şifreniz yanlış şifre değiştirilemedi")
+        elif submit == "telSubmit":
+            tel = request.POST.get("tel")
+            password = request.POST.get("password")
+            if request.user.check_password(password):
+                request.user.userinfo.tel = tel
+                request.user.userinfo.save()
+                return redirect("hesapPage")
+            else:
+                messages.error(request, "Şifreniz yanlış Telefon değiştiirlemedi")       
+    context={
+        "profile":profile,
+    }
     return render(request,"hesap.html",context)
 
 def profilePage(request):

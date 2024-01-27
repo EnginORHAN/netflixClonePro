@@ -16,3 +16,5 @@ class ProfileAdmin(admin.ModelAdmin):
     search_fields = ('user__username',) #admin panaline arama barı veriyor
     # date_hierarchy = '' # tarih sıralaması hirayerşisi yapar
     # ordering = ('',) #sıralama
+    
+admin.site.register(Userinfo)

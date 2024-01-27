@@ -42,7 +42,7 @@
                 <div class="col">
                     <strong>{{ request.user.email }}</strong>
                     <p>Parola:*****</p>
-                    <p>tel: {{ request.user.usermy.tel|slice:":4" }}***{{ request.user.usermy.tel|slice:"-2:" }}</p>
+                    <p>tel: {{ request.user.userinfo.tel|slice:":4" }}***{{ request.user.userinfo.tel|slice:"-2:" }}</p>
                 </div>
                 <div class="col">
                     <!-- EMAIL CHANGE -->
@@ -119,7 +119,7 @@
                                     <form method="POST">
                                         {% csrf_token %}
                                         <div class="modal-body d-flex flex-column gap-3">
-                                            <input name="tel" type="text" value="{{ request.user.usermy.tel }}" class="form-control">
+                                            <input name="tel" type="tel" maxlength="10" minlength="10" value="{{ request.user.userinfo.tel }}" class="form-control">
                                             <input name="password" type="password" placeholder="Şifrenizi giriniz" class="form-control">
                                         </div>
                                         <div class="modal-footer">
@@ -157,7 +157,7 @@
                 </div>
 
                 <div class="col">
-                    <button class="accordion"><img src="{% static 'img/smile-profil.png' %}" alt=""> Berkay </button>
+                    <button class="accordion"><img src="{{ profile.image.url }}" style="width: 40px; height: 40px; object-fit: cover;" class="rounded-circle" alt=""> {{ request.user.username|upper }} </button>
                     <div class="panel">
                         <p>
                             <strong>Dil</strong> <br>
