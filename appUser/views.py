@@ -3,7 +3,9 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from appUser.models import *
+from django.contrib.auth.decorators import login_required # giriş yapmayan kişileri kısıtla
 
+@login_required(login_url="loginPage")
 def hesapPage(request):
     profile = Profile.objects.get(user = request.user, islogin = True)
     
@@ -45,6 +47,7 @@ def hesapPage(request):
     }
     return render(request,"hesap.html",context)
 
+@login_required(login_url="loginPage")
 def profilePage(request):
     context={}
     profile_list = Profile.objects.filter(user=request.user, isview=True)
@@ -101,13 +104,14 @@ def profilePage(request):
     })
     return render(request,"profile.html",context)
 
+@login_required(login_url="loginPage")
 def profileDelete(request,pid):
     profile = Profile.objects.get(user=request.user,id=pid)
     profile.isview = False
     profile.save() 
     return redirect("profilePage")
 
-
+@login_required(login_url="loginPage")
 def profileLogin(request,pid):
     
     profile_list = Profile.objects.filter(user = request.user) # kullanıcının tüm profilleri
@@ -185,7 +189,8 @@ def registerPage(request):
             context.update({"fname":fname,"lname":lname,"email":email,"username":username})
 
     return render(request,"user/register.html",context)
-
+    
+@login_required(login_url="loginPage")
 def logoutUser(request):
     logout(request)
     return redirect("loginPage")
