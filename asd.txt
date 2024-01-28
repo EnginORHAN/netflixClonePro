@@ -1,2 +1,0 @@
-navbardan title yi al 
-gelen titlesi title olanları sayfada göster
