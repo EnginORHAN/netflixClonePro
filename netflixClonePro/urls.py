@@ -14,6 +14,8 @@ urlpatterns = [
     path("profileDelete/<pid>", profileDelete,name="profileDelete"),
     path("profileLogin/<pid>", profileLogin,name="profileLogin"),
     path("logoutUser", logoutUser,name="logoutUser"),
+    path("netflix/", netflix,name="netflix"),
+    path("netflix/<slug>", netflix,name="netflix"),
     
     
     path("login", loginPage,name="loginPage"),

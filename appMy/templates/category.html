@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %} 
+
+
+<div class="container pt-5">
+   
+        <div class="row mt-5">
+        {% for i in movie %}
+        <div class="col-md-3 col-4 g-2">
+            <a href="">
+                <img src="{{ i.image.url }}" class="w-100"alt="">
+            </a>
+        </div>
+        {% endfor %}
+    
+        </div>
+
+
+</div>
+{% endblock body %}
+    
+
+        
+
